@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acapxasyraf/vue3-tabevents.git"
+    "url": "git+https://github.com/acapxasyrafx/vue3-tabevents.git"
   },
   "files": [
     "dist",
@@ -46,9 +46,9 @@
     "vue-jest": "^3.0.0"
   },
   "bugs": {
-    "url": "https://github.com/acapxasyraf/vue3-tabevents/issues"
+    "url": "https://github.com/acapxasyrafx/vue3-tabevents/issues"
   },
-  "homepage": "https://github.com/acapxasyraf/vue3-tabevents#readme",
+  "homepage": "https://github.com/acapxasyrafx/vue3-tabevents#readme",
   "directories": {
     "test": "test"
   }
