@@ -2,7 +2,7 @@
   "name": "vue3-tabevents",
   "private": false,
   "description": "Easy communication between tabs for Vue 3.x",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "main": "dist/vue-tabevents.cjs.js",
   "module": "dist/vue-tabevents.es.js",
