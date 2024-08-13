@@ -1,58 +1,71 @@
+// vueTabEvents.js
 const vueTabEvents = {
-  install: function (Vue) {
-    Vue.prototype.$IsJsonString = function IsJsonString (str) {
+  install(app) {
+    // Add $IsJsonString to global properties
+    app.config.globalProperties.$IsJsonString = function IsJsonString(str) {
       try {
-        JSON.parse(str)
+        JSON.parse(str);
       } catch (e) {
-        return false
+        return false;
       }
-      return true
-    }
+      return true;
+    };
 
-    Vue.prototype.$tabEvent = {
-      emit: function emit (event, data) {
+    // Add $tabEvent to global properties
+    app.config.globalProperties.$tabEvent = {
+      emit(event, data) {
         if (!data) {
-          localStorage.setItem('event', event)
+          localStorage.setItem('event', event);
         }
         if (data) {
-          if (typeof data !== 'string') localStorage.setItem('eventWithData', `${event}!@#$%${JSON.stringify(data)}`)
-          else localStorage.setItem('eventWithData', `${event}!@#$%${data}`)
+          if (typeof data !== 'string') {
+            localStorage.setItem('eventWithData', `${event}!@#$%${JSON.stringify(data)}`);
+          } else {
+            localStorage.setItem('eventWithData', `${event}!@#$%${data}`);
+          }
         }
-        localStorage.removeItem('event')
-        localStorage.removeItem('eventWithData')
+        localStorage.removeItem('event');
+        localStorage.removeItem('eventWithData');
       },
 
-      on: function on (event, callback) {
-        function listner (e) {
-          if (e.newValue == null) return
-          else if (e.key == 'event') {
-            if (e.newValue === event) return callback()
-          } else if (e.key == 'eventWithData') {
-            const ev = e.newValue.split('!@#$%')
+      on(event, callback) {
+        function listener(e) {
+          if (e.newValue == null) return;
+          if (e.key === 'event') {
+            if (e.newValue === event) return callback();
+          } else if (e.key === 'eventWithData') {
+            const ev = e.newValue.split('!@#$%');
             if (ev[0] === event) {
-              if (Vue.prototype.$IsJsonString(ev[1])) return callback(JSON.parse(ev[1]))
-              else return callback(ev[1])
+              if (app.config.globalProperties.$IsJsonString(ev[1])) {
+                return callback(JSON.parse(ev[1]));
+              } else {
+                return callback(ev[1]);
+              }
             }
           }
         }
 
-        window.addEventListener('storage', listner)
+        window.addEventListener('storage', listener);
 
-        window.addEventListener('offanEvent', r => {
-          if (r.detail.eventToOff === event) window.removeEventListener('storage', listner)
-        })
+        window.addEventListener('offanEvent', (r) => {
+          if (r.detail.eventToOff === event) {
+            window.removeEventListener('storage', listener);
+          }
+        });
       },
 
-      off: function off (event) {
-        const ev = new CustomEvent('offanEvent', { detail: { eventToOff: event } })
-        window.dispatchEvent(ev)
+      off(event) {
+        const ev = new CustomEvent('offanEvent', { detail: { eventToOff: event } });
+        window.dispatchEvent(ev);
       }
-    }
+    };
   }
-}
+};
 
-export default vueTabEvents
+export default vueTabEvents;
 
+// Automatically install the plugin if Vue is available globally
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(vueTabEvents)
+  const app = window.Vue.createApp({});
+  app.use(vueTabEvents);
 }
