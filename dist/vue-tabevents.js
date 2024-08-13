@@ -12,7 +12,7 @@
 
 var vueTabEvents = {
   install: function (Vue) {
-    Vue.prototype.$IsJsonString = function IsJsonString(str) {
+    Vue.config.globalProperties.$IsJsonString = function IsJsonString(str) {
       try {
         JSON.parse(str);
       } catch (e) {
@@ -21,7 +21,7 @@ var vueTabEvents = {
       return true;
     };
 
-    Vue.prototype.$tabEvent = {
+    Vue.config.globalProperties.$tabEvent = {
       emit: function emit(event, data) {
         if (!data) {
           localStorage.setItem('event', event);

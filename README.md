@@ -6,7 +6,7 @@
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/vue-tabevents/badge)](https://www.jsdelivr.com/package/npm/vue-tabevents)
 [![travisci](https://img.shields.io/travis/Almoullim/vue-tabevents/master.svg?style=flat-square)](https://travis-ci.org/Almoullim/vue-tabevents)
 
-Easy communication between tabs for Vue 3.x
+Easy communication between tabs for Vue 2.x
 
 ![Basic Screenshot](README/images/demo.gif)
 

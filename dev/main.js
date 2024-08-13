@@ -1,10 +1,13 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
+import App from './App'
 import vueTabevents from '../dist/vue-tabevents.min.js'
 
-const app = createApp(App);
-app.use(vueTabevents);
+Vue.use(vueTabevents)
 
+Vue.config.productionTip = false
 
-app.config.productionTip = false
-
-app.mount('#app');
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
