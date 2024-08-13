@@ -1,6 +1,6 @@
 {
   "name": "vue3-tabevents",
-  "private": true,
+  "private": false,
   "description": "Easy communication between tabs for Vue 3.x",
   "version": "1.0.0",
   "type": "module",
