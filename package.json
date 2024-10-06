@@ -40,9 +40,9 @@
     "@vue/test-utils": "^1.0.0-beta.25",
     "babel-jest": "^23.6.0",
     "bili": "^2.2.7",
-    "jest": "^23.6.0",
-    "poi": "^9.6.13",
-    "rollup-plugin-vue": "^3.0.0",
+    "jest": "^29.7.0",
+    "poi": "^12.10.3",
+    "rollup-plugin-vue": "^6.0.0",
     "vue-jest": "^3.0.0"
   },
   "bugs": {
